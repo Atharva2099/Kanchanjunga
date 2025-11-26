@@ -15,11 +15,12 @@ Need to build a 100 M model atleast with 50M dense and 5x10M experts.
 - Keep each expert’s shard to 5–50M tokens for Colab-scale runs
 - Warm-start routing by sampling mini-batches per expert in round-robin for the first few thousand steps. Then switch to mixed sampling; the aux loss will take over.
 ---
-**Day 1: Tokenisers and data streaming**
+#### **Day 1: Tokenisers and data streaming**
 
 Used [allenai/c4](https://huggingface.co/datasets/allenai/c4) dataset with HF streaming used tiktoken for tokenising and a buffer to make sure everything works smoothly on a mac. Tokenised into 3 files train.bin , val.bin and a config file called meta.pkl
 
-**Day 2: understanding attention**
+---
+#### **Day 2: understanding attention**
 
 Input tokens are converted to vectors and stored in matrix call it query, we also have every word precomputed as keys 
 

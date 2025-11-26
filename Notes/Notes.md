@@ -4,7 +4,7 @@
 
 ---
 
-## 🎯 Expert Domains
+## Expert Domains
 
 | Domain | Datasets |
 |--------|----------|
@@ -17,7 +17,7 @@
 
 ---
 
-## 💡 Important Tips
+## Important Tips
 
 - Scale down sequence length but keep MoEs up in case of RAM shortage during training
 - Keep each expert's shard to 5–50M tokens for Colab-scale runs
@@ -25,7 +25,7 @@
 
 ---
 
-## 📓 Progress Log
+## Progress Log
 
 ### Day 1: Tokenisers and Data Streaming
 
@@ -37,13 +37,13 @@ Used [allenai/c4](https://huggingface.co/datasets/allenai/c4) dataset with HF st
 
 Input tokens are converted to vectors and stored in matrix call it query, we also have every word precomputed as keys.
 
-$$\text{attention score} = Query(Q) \odot Key(K)$$
+$$attention\;score  =Query(Q) \circledast Key(K)$$
 
-Where $\odot$ denotes element-wise dot product
+Where $\circledast$ denotes element-wise dot product
 
-$$\text{attention weights}(\alpha) = \text{softmax}\left(\frac{\text{attention score}}{\sqrt{d_K}}\right)$$
+$$attention\;weights(\alpha) = softmax(attention\;score /\sqrt{dK})$$
 
-Input tokens are converted to vectors and stored in matrix call it query, we also have every word precomputed as keys 
+Attention weights are just normalised attention score.
 
 #### The Rationale Behind Scaled-Dot Product Attention
 
@@ -53,6 +53,6 @@ The reason for the normalization by the embedding dimension size is to improve t
 
 To compute context vectors you multiply them with values:
 
-$$\text{Context vector} = \alpha \odot Value(V)$$
+$$Context\;vector = \alpha\;\circledast\;Value(V)$$
 
 Everything can be optimised with matrix multiplication.
